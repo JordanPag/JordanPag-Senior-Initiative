@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module external.linked.project.id=":TeamCode" external.linked.project.path="$MODULE_DIR$/../../../TeamCode" external.root.project.path="$MODULE_DIR$/../../.." external.system.id="GRADLE" external.system.module.group="JordanPag-Senior-Initiative" external.system.module.version="unspecified" type="JAVA_MODULE" version="4">
+  <component name="FacetManager">
+    <facet type="android-gradle" name="Android-Gradle">
+      <configuration>
+        <option name="GRADLE_PROJECT_PATH" value=":TeamCode" />
+        <option name="LAST_SUCCESSFUL_SYNC_AGP_VERSION" />
+        <option name="LAST_KNOWN_AGP_VERSION" value="7.0.4" />
+      </configuration>
+    </facet>
+    <facet type="kotlin-language" name="Kotlin">
+      <configuration version="4" platform="JVM 1.8" allPlatforms="JVM [1.8]" useProjectSettings="false">
+        <compilerSettings>
+          <option name="additionalArguments" value="-Xallow-no-source-files" />
+        </compilerSettings>
+        <compilerArguments>
+          <option name="destination" value="$MODULE_DIR$/../../../TeamCode/build/tmp/kotlin-classes/debug" />
+          <option name="classpath" value="$MODULE_DIR$/../../../TeamCode/build/intermediates/compile_and_runtime_not_namespaced_r_class_jar/debug/R.jar:/Users/student/.gradle/caches/transforms-3/efeabfce223d0dacfdfb5b190710dd09/transformed/jetified-core-0.5.4.jar:/Users/student/.gradle/caches/transforms-3/3200b30c5ed547d6d9ce91b4b5fc2531/transformed/jetified-core-1.2.1-api.jar:/Users/student/.gradle/caches/transforms-3/55ff379af8e6157133df3804114ab51d/transformed/jetified-kotlin-stdlib-jdk8-1.6.10.jar:/Users/student/.gradle/caches/transforms-3/481130fde121e66a317a40f5bcf58eb2/transformed/jetified-kotlin-stdlib-jdk7-1.6.10.jar:/Users/student/.gradle/caches/transforms-3/ae3c4d8180431714b717359a22c34724/transformed/jetified-kotlin-android-extensions-runtime-1.4.10.jar:/Users/student/.gradle/caches/transforms-3/126edbe099f9e637ed9be99ac5855283/transformed/jetified-core-ktx-1.6.0-api.jar:/Users/student/.gradle/caches/transforms-3/1a1645b2a7cfae1bf4dd35c17c60d9e5/transformed/jetified-kotlin-stdlib-1.6.10.jar:/Users/student/.gradle/caches/transforms-3/b1c170c19e53b446495489cf1561c5c1/transformed/jetified-annotations-13.0.jar:/Users/student/.gradle/caches/transforms-3/13690fbff4d4de541bb7e27dbd1dcf0a/transformed/jetified-kotlin-stdlib-common-1.6.10.jar:/Users/student/.gradle/caches/transforms-3/6fe9a15208ea631eefec4f78119ff6dd/transformed/jetified-Inspection-7.1.0-api.jar:/Users/student/.gradle/caches/transforms-3/9e868313ea7fbdc5c1de821b23af7b6d/transformed/jetified-dashboard-0.4.3-api.jar:/Users/student/.gradle/caches/transforms-3/04f29d9df4676041da862dd199ad09a6/transformed/jetified-RobotCore-7.1.0-api.jar:/Users/student/.gradle/caches/transforms-3/6d20cde7328f1db9e75ef68be827f7b8/transformed/jetified-Tfod-7.1.0-api.jar:/Users/student/.gradle/caches/transforms-3/d1f456460219597dae1a8e5f65b9b063/transformed/jetified-tensorflow-lite-task-vision-0.2.0-api.jar:/Users/student/.gradle/caches/transforms-3/77f34f218a4c496a434fbe5409805bc5/transformed/jetified-tensorflow-lite-task-base-0.2.0-api.jar:/Users/student/.gradle/caches/transforms-3/7f788b85e3fab88e2e92625076f794fb/transformed/jetified-tensorflow-lite-support-0.2.0-api.jar:/Users/student/.gradle/caches/transforms-3/b9308cfad31a845a29e9fe1846096b71/transformed/jetified-checker-qual-2.5.8.jar:/Users/student/.gradle/caches/transforms-3/710dea25981416fe96458a7af74844c1/transformed/jetified-tensorflow-lite-2.4.0-api.jar:/Users/student/.gradle/caches/transforms-3/b671a076627ae881f7c4468d0fdc94dc/transformed/appcompat-1.2.0-api.jar:/Users/student/.gradle/caches/transforms-3/a146670445c0104055334ec8b42bca24/transformed/fragment-1.1.0-api.jar:/Users/student/.gradle/caches/transforms-3/23a3fb18ddc067f44b25b71f77961892/transformed/jetified-appcompat-resources-1.2.0-api.jar:/Users/student/.gradle/caches/transforms-3/23d853d2f7fa7bea311d63194ec6882c/transformed/drawerlayout-1.0.0-api.jar:/Users/student/.gradle/caches/transforms-3/11dc85c1b7e451b80e289e67711de682/transformed/viewpager-1.0.0-api.jar:/Users/student/.gradle/caches/transforms-3/40e3218e7da220a9d00875919ab564b1/transformed/loader-1.0.0-api.jar:/Users/student/.gradle/caches/transforms-3/6b37e0830e7dcacc8df1170d4573a23e/transformed/jetified-activity-1.0.0-api.jar:/Users/student/.gradle/caches/transforms-3/3706802401a41ef64934bd69f4727fa5/transformed/vectordrawable-animated-1.1.0-api.jar:/Users/student/.gradle/caches/transforms-3/fa5a9fd4d53bf930366b8c41001f6826/transformed/vectordrawable-1.1.0-api.jar:/Users/student/.gradle/caches/transforms-3/d8d10a6c8539027ea0022c7b5c89144e/transformed/customview-1.0.0-api.jar:/Users/student/.gradle/caches/transforms-3/f521799ee4bd7a0f7671b7503b3376b4/transformed/core-1.6.0-api.jar:/Users/student/.gradle/caches/transforms-3/fedef4aadae3d1a768483ffdd836f9e7/transformed/cursoradapter-1.0.0-api.jar:/Users/student/.gradle/caches/transforms-3/a4d900cd28ad86f9983ece4f1f0ce037/transformed/lifecycle-runtime-2.1.0-api.jar:/Users/student/.gradle/caches/transforms-3/94626b04d948835e32643c17372c990e/transformed/versionedparcelable-1.1.1-api.jar:/Users/student/.gradle/caches/modules-2/files-2.1/androidx.collection/collection/1.1.0/1f27220b47669781457de0d600849a5de0e89909/collection-1.1.0.jar:/Users/student/.gradle/caches/transforms-3/ad593d6ce32c292bb7cb023cd65084f5/transformed/lifecycle-viewmodel-2.1.0-api.jar:/Users/student/.gradle/caches/transforms-3/2a8d94fe1f8dcda29f035699765ab48b/transformed/jetified-savedstate-1.0.0-api.jar:/Users/student/.gradle/caches/transforms-3/122cd6987a9f0d177e93cbd15fb8a369/transformed/lifecycle-livedata-2.0.0-api.jar:/Users/student/.gradle/caches/transforms-3/1a69b9cbcc760d465137cb63a5985f36/transformed/lifecycle-livedata-core-2.0.0-api.jar:/Users/student/.gradle/caches/modules-2/files-2.1/androidx.lifecycle/lifecycle-common/2.1.0/c67e7807d9cd6c329b9d0218b2ec4e505dd340b7/lifecycle-common-2.1.0.jar:/Users/student/.gradle/caches/transforms-3/700af0da3831d94f0299e37c02becfa8/transformed/core-runtime-2.0.0-api.jar:/Users/student/.gradle/caches/modules-2/files-2.1/androidx.arch.core/core-common/2.1.0/b3152fc64428c9354344bd89848ecddc09b6f07e/core-common-2.1.0.jar:/Users/student/.gradle/caches/transforms-3/fb5c353a65c0b309419c1069f4a1ef81/transformed/interpolator-1.0.0-api.jar:/Users/student/.gradle/caches/modules-2/files-2.1/androidx.annotation/annotation/1.2.0/57136ff68ee784c6e19db34ed4a175338fadfde1/annotation-1.2.0.jar:/Users/student/.gradle/caches/transforms-3/05bb7a5314e192314753ba9ef5ab223e/transformed/jetified-annotation-experimental-1.1.0-api.jar:/Users/student/.gradle/caches/transforms-3/5033744ef6be076b91b85880a54a1097/transformed/jetified-threetenabp-1.3.1-api.jar:/Users/student/.gradle/caches/transforms-3/8ba63fdd99db8184c1a1c4b55c9bb8e3/transformed/jetified-threetenbp-1.5.1-no-tzdb.jar:/Users/student/.gradle/caches/transforms-3/cc8e03df2c5f900990724b0ba4481a05/transformed/jetified-Blocks-7.1.0-api.jar:/Users/student/.gradle/caches/transforms-3/e185f0d173fa5d4bb4747467bc2cf1c4/transformed/jetified-RobotServer-7.1.0-api.jar:/Users/student/.gradle/caches/transforms-3/ce681649662295d4e93ce037b0b054c5/transformed/jetified-Hardware-7.1.0-api.jar:/Users/student/.gradle/caches/transforms-3/63c97f6023842e64d276a6d59e6ae482/transformed/jetified-FtcCommon-7.1.0-api.jar:/Users/student/.gradle/caches/transforms-3/4f1f35d257e6df341516342f6f44df46/transformed/jetified-OnBotJava-7.1.0-api.jar:/Users/student/.gradle/caches/transforms-3/207675a25ca54e85b4ac32b8a316ef8e/transformed/jetified-gameAssets-FreightFrenzy-1.0.0-api.jar:/Users/student/.gradle/caches/transforms-3/e1596c624fc6cad6219a2a10ea647aa0/transformed/jetified-nanohttpd-websocket-2.3.1.jar:/Users/student/.gradle/caches/transforms-3/a71f497e7849961b07a06533af9f5119/transformed/jetified-commons-math3-3.6.1.jar:/Users/student/.gradle/caches/transforms-3/3ec20ae6a51e1a77fc2b4d71d123b448/transformed/jetified-easyopencv-1.5.1-api.jar:/Users/student/.gradle/caches/transforms-3/6bf8444d8945d6439affd0ebd4162e2d/transformed/jetified-opencv-repackaged-4.5.3-B-api.jar:/Users/student/.gradle/caches/transforms-3/d397729a197890529232fac00ab2e39b/transformed/jetified-ejml-simple-0.39.jar:/Users/student/.gradle/caches/transforms-3/180e765e5ecc305d54fdca5d4d23444d/transformed/jetified-ejml-fsparse-0.39.jar:/Users/student/.gradle/caches/transforms-3/758b1b6fe5c2e09272648cc665895c87/transformed/jetified-ejml-fdense-0.39.jar:/Users/student/.gradle/caches/transforms-3/46d0fc79801fc67ebe265276c5fa8078/transformed/jetified-ejml-dsparse-0.39.jar:/Users/student/.gradle/caches/transforms-3/de7cfc056b5e543884719274b43d680e/transformed/jetified-ejml-ddense-0.39.jar:/Users/student/.gradle/caches/transforms-3/13e16ccbf7e091e375dd516c6c7ce960/transformed/jetified-ejml-cdense-0.39.jar:/Users/student/.gradle/caches/transforms-3/0d7e39fdcb808fc576b196fe766ffff9/transformed/jetified-ejml-zdense-0.39.jar:/Users/student/.gradle/caches/transforms-3/eedd886027211b64555bd53a25ab8cdd/transformed/jetified-ejml-core-0.39.jar:/Users/student/.gradle/caches/transforms-3/e76bcb4eb2b408e5a82060516e9e2d37/transformed/jetified-jsr305-3.0.2.jar:/Users/student/Documents/GitHub/JordanPag-Senior-Initiative/FtcRobotController/build/intermediates/compile_library_classes_jar/debug/classes.jar:/Users/student/Library/Android/sdk/platforms/android-29/android.jar:/Users/student/Library/Android/sdk/build-tools/30.0.2/core-lambda-stubs.jar" />
+          <option name="noStdlib" value="true" />
+          <option name="moduleName" value="TeamCode_debug" />
+          <option name="languageVersion" value="1.6" />
+          <option name="apiVersion" value="1.6" />
+          <option name="pluginOptions">
+            <array />
+          </option>
+          <option name="pluginClasspaths">
+            <array />
+          </option>
+          <option name="errors">
+            <ArgumentParseErrors />
+          </option>
+        </compilerArguments>
+      </configuration>
+    </facet>
+    <facet type="android" name="Android">
+      <configuration>
+        <option name="SELECTED_BUILD_VARIANT" value="debug" />
+        <option name="ASSEMBLE_TASK_NAME" value="assembleDebug" />
+        <option name="COMPILE_JAVA_TASK_NAME" value="compileDebugSources" />
+        <afterSyncTasks>
+          <task>generateDebugSources</task>
+        </afterSyncTasks>
+        <option name="ALLOW_USER_CONFIGURATION" value="false" />
+        <option name="MANIFEST_FILE_RELATIVE_PATH" value="/src/main/AndroidManifest.xml" />
+        <option name="RES_FOLDER_RELATIVE_PATH" value="/src/main/res" />
+        <option name="RES_FOLDERS_RELATIVE_PATH" value="file://$MODULE_DIR$/../../../TeamCode/src/main/res;file://$MODULE_DIR$/../../../TeamCode/src/debug/res;file://$MODULE_DIR$/../../../TeamCode/build/generated/res/rs/debug;file://$MODULE_DIR$/../../../TeamCode/build/generated/res/resValues/debug" />
+        <option name="TEST_RES_FOLDERS_RELATIVE_PATH" value="file://$MODULE_DIR$/../../../TeamCode/src/androidTest/res;file://$MODULE_DIR$/../../../TeamCode/src/androidTestDebug/res;file://$MODULE_DIR$/../../../TeamCode/build/generated/res/rs/androidTest/debug;file://$MODULE_DIR$/../../../TeamCode/build/generated/res/resValues/androidTest/debug" />
+        <option name="ASSETS_FOLDER_RELATIVE_PATH" value="/src/main/assets" />
+      </configuration>
+    </facet>
+  </component>
+  <component name="NewModuleRootManager" LANGUAGE_LEVEL="JDK_1_8">
+    <output url="file://$MODULE_DIR$/../../../TeamCode/build/intermediates/javac/debug/classes" />
+    <output-test url="file://$MODULE_DIR$/../../../TeamCode/build/intermediates/javac/debugUnitTest/classes" />
+    <exclude-output />
+    <content url="file://$MODULE_DIR$/../../../TeamCode">
+      <sourceFolder url="file://$MODULE_DIR$/../../../TeamCode/build/generated/ap_generated_sources/debug/out" isTestSource="false" generated="true" />
+      <sourceFolder url="file://$MODULE_DIR$/../../../TeamCode/build/generated/res/resValues/debug" type="java-resource" />
+      <sourceFolder url="file://$MODULE_DIR$/../../../TeamCode/build/generated/source/buildConfig/debug" isTestSource="false" generated="true" />
+      <sourceFolder url="file://$MODULE_DIR$/../../../TeamCode/src/main/java" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../../../TeamCode/src/main/res" type="java-resource" />
+      <excludeFolder url="file://$MODULE_DIR$/../../../TeamCode/.gradle" />
+      <excludeFolder url="file://$MODULE_DIR$/../../../TeamCode/build" />
+    </content>
+    <orderEntry type="jdk" jdkName="Android API 29 Platform" jdkType="Android SDK" />
+    <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="library" name="Gradle: com.acmerobotics.roadrunner:core:0.5.4" level="project" />
+    <orderEntry type="library" name="Gradle: org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.6.10" level="project" />
+    <orderEntry type="library" name="Gradle: org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.6.10" level="project" />
+    <orderEntry type="library" name="Gradle: org.jetbrains.kotlin:kotlin-android-extensions-runtime:1.4.10" level="project" />
+    <orderEntry type="library" name="Gradle: org.jetbrains.kotlin:kotlin-stdlib:1.6.10" level="project" />
+    <orderEntry type="library" name="Gradle: org.jetbrains:annotations:13.0" level="project" />
+    <orderEntry type="library" name="Gradle: org.jetbrains.kotlin:kotlin-stdlib-common:1.6.10" level="project" />
+    <orderEntry type="library" name="Gradle: org.checkerframework:checker-qual:2.5.8" level="project" />
+    <orderEntry type="library" name="Gradle: androidx.collection:collection:1.1.0" level="project" />
+    <orderEntry type="library" name="Gradle: androidx.lifecycle:lifecycle-common:2.1.0" level="project" />
+    <orderEntry type="library" name="Gradle: androidx.arch.core:core-common:2.1.0" level="project" />
+    <orderEntry type="library" name="Gradle: androidx.annotation:annotation:1.2.0" level="project" />
+    <orderEntry type="library" name="Gradle: org.threeten:threetenbp:1.5.1:no-tzdb" level="project" />
+    <orderEntry type="library" name="Gradle: org.nanohttpd:nanohttpd-websocket:2.3.1" level="project" />
+    <orderEntry type="library" name="Gradle: org.apache.commons:commons-math3:3.6.1" level="project" />
+    <orderEntry type="library" name="Gradle: org.ejml:ejml-simple:0.39" level="project" />
+    <orderEntry type="library" name="Gradle: org.ejml:ejml-fsparse:0.39" level="project" />
+    <orderEntry type="library" name="Gradle: org.ejml:ejml-fdense:0.39" level="project" />
+    <orderEntry type="library" name="Gradle: org.ejml:ejml-dsparse:0.39" level="project" />
+    <orderEntry type="library" name="Gradle: org.ejml:ejml-ddense:0.39" level="project" />
+    <orderEntry type="library" name="Gradle: org.ejml:ejml-cdense:0.39" level="project" />
+    <orderEntry type="library" name="Gradle: org.ejml:ejml-zdense:0.39" level="project" />
+    <orderEntry type="library" name="Gradle: org.ejml:ejml-core:0.39" level="project" />
+    <orderEntry type="library" name="Gradle: com.google.code.findbugs:jsr305:3.0.2" level="project" />
+    <orderEntry type="library" name="Gradle: org.ftclib.ftclib:core:1.2.1@aar" level="project" />
+    <orderEntry type="library" name="Gradle: androidx.core:core-ktx:1.6.0@aar" level="project" />
+    <orderEntry type="library" name="Gradle: org.firstinspires.ftc:Inspection:7.1.0@aar" level="project" />
+    <orderEntry type="library" name="Gradle: com.acmerobotics.dashboard:dashboard:0.4.3@aar" level="project" />
+    <orderEntry type="library" name="Gradle: org.firstinspires.ftc:RobotCore:7.1.0@aar" level="project" />
+    <orderEntry type="library" name="Gradle: org.firstinspires.ftc:Tfod:7.1.0@aar" level="project" />
+    <orderEntry type="library" name="Gradle: org.tensorflow:tensorflow-lite-task-vision:0.2.0@aar" level="project" />
+    <orderEntry type="library" name="Gradle: org.tensorflow:tensorflow-lite-task-base:0.2.0@aar" level="project" />
+    <orderEntry type="library" name="Gradle: org.tensorflow:tensorflow-lite-support:0.2.0@aar" level="project" />
+    <orderEntry type="library" name="Gradle: org.tensorflow:tensorflow-lite:2.4.0@aar" level="project" />
+    <orderEntry type="library" name="Gradle: androidx.appcompat:appcompat:1.2.0@aar" level="project" />
+    <orderEntry type="library" name="Gradle: androidx.fragment:fragment:1.1.0@aar" level="project" />
+    <orderEntry type="library" name="Gradle: androidx.appcompat:appcompat-resources:1.2.0@aar" level="project" />
+    <orderEntry type="library" name="Gradle: androidx.drawerlayout:drawerlayout:1.0.0@aar" level="project" />
+    <orderEntry type="library" name="Gradle: androidx.viewpager:viewpager:1.0.0@aar" level="project" />
+    <orderEntry type="library" name="Gradle: androidx.loader:loader:1.0.0@aar" level="project" />
+    <orderEntry type="library" name="Gradle: androidx.activity:activity:1.0.0@aar" level="project" />
+    <orderEntry type="library" name="Gradle: androidx.vectordrawable:vectordrawable-animated:1.1.0@aar" level="project" />
+    <orderEntry type="library" name="Gradle: androidx.vectordrawable:vectordrawable:1.1.0@aar" level="project" />
+    <orderEntry type="library" name="Gradle: androidx.customview:customview:1.0.0@aar" level="project" />
+    <orderEntry type="library" name="Gradle: androidx.core:core:1.6.0@aar" level="project" />
+    <orderEntry type="library" name="Gradle: androidx.cursoradapter:cursoradapter:1.0.0@aar" level="project" />
+    <orderEntry type="library" name="Gradle: androidx.lifecycle:lifecycle-runtime:2.1.0@aar" level="project" />
+    <orderEntry type="library" name="Gradle: androidx.versionedparcelable:versionedparcelable:1.1.1@aar" level="project" />
+    <orderEntry type="library" name="Gradle: androidx.lifecycle:lifecycle-viewmodel:2.1.0@aar" level="project" />
+    <orderEntry type="library" name="Gradle: androidx.savedstate:savedstate:1.0.0@aar" level="project" />
+    <orderEntry type="library" name="Gradle: androidx.lifecycle:lifecycle-livedata:2.0.0@aar" level="project" />
+    <orderEntry type="library" name="Gradle: androidx.lifecycle:lifecycle-livedata-core:2.0.0@aar" level="project" />
+    <orderEntry type="library" name="Gradle: androidx.arch.core:core-runtime:2.0.0@aar" level="project" />
+    <orderEntry type="library" name="Gradle: androidx.interpolator:interpolator:1.0.0@aar" level="project" />
+    <orderEntry type="library" name="Gradle: androidx.annotation:annotation-experimental:1.1.0@aar" level="project" />
+    <orderEntry type="library" name="Gradle: com.jakewharton.threetenabp:threetenabp:1.3.1@aar" level="project" />
+    <orderEntry type="library" name="Gradle: org.firstinspires.ftc:Blocks:7.1.0@aar" level="project" />
+    <orderEntry type="library" name="Gradle: org.firstinspires.ftc:RobotServer:7.1.0@aar" level="project" />
+    <orderEntry type="library" name="Gradle: org.firstinspires.ftc:Hardware:7.1.0@aar" level="project" />
+    <orderEntry type="library" name="Gradle: org.firstinspires.ftc:FtcCommon:7.1.0@aar" level="project" />
+    <orderEntry type="library" name="Gradle: org.firstinspires.ftc:OnBotJava:7.1.0@aar" level="project" />
+    <orderEntry type="library" name="Gradle: org.firstinspires.ftc:gameAssets-FreightFrenzy:1.0.0@aar" level="project" />
+    <orderEntry type="library" name="Gradle: org.openftc:easyopencv:1.5.1@aar" level="project" />
+    <orderEntry type="library" name="Gradle: org.openftc:opencv-repackaged:4.5.3-B@aar" level="project" />
+    <orderEntry type="module" module-name="JordanPag-Senior-Initiative.FtcRobotController" />
+  </component>
+</module>
