@@ -1,5 +1,10 @@
 package org.firstinspires.ftc.teamcode.opmodes;
 
+import static org.firstinspires.ftc.teamcode.Constants.FIELD_LENGTH;
+import static org.firstinspires.ftc.teamcode.Constants.FIELD_WIDTH;
+import static org.firstinspires.ftc.teamcode.Constants.ROBOT_LENGTH;
+import static org.firstinspires.ftc.teamcode.Constants.ROBOT_WIDTH;
+
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.util.ElapsedTime;
@@ -18,6 +23,12 @@ public class MecanumTeleOp extends OpMode {
     public void init() {
         // Initialize each mechanism
         chassis.init(hardwareMap);
+        chassis.setPos(
+                FIELD_WIDTH - ROBOT_WIDTH / 2,
+                -FIELD_LENGTH + ROBOT_LENGTH / 2,
+                Math.PI / 2
+        ); // Starting in the bottom right corner, facing upwards - the center of the field is (0, 0)
+        // 0 heading is to the right along the x axis, angles increase counter-clockwise
     }
 
     @Override
@@ -48,8 +59,11 @@ public class MecanumTeleOp extends OpMode {
 
         chassis.run(gamepad1, fieldCentric, wallAvoider);
 
+        telemetry.addData("field centric", fieldCentric ? "ON" : "OFF");
+        telemetry.addData("wall avoider", wallAvoider ? "ON" : "OFF");
         double[] pos = chassis.getPos();
         telemetry.addData("x", pos[0]);
         telemetry.addData("y", pos[1]);
+        telemetry.addData("heading", pos[2]);
     }
 }

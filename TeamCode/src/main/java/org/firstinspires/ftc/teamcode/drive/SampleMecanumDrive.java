@@ -81,7 +81,6 @@ public class SampleMecanumDrive extends MecanumDrive {
 
     private BNO055IMU imu;
     private VoltageSensor batteryVoltageSensor;
-    public DistanceSensorLocalizer distanceSensorLocalizer;
 
     public SampleMecanumDrive(HardwareMap hardwareMap) {
         super(kV, kA, kStatic, TRACK_WIDTH, TRACK_WIDTH, LATERAL_MULTIPLIER);
@@ -146,14 +145,6 @@ public class SampleMecanumDrive extends MecanumDrive {
         trajectorySequenceRunner = new TrajectorySequenceRunner(follower, HEADING_PID);
     }
 
-    public void relocalize() {
-        distanceSensorLocalizer.update(getPoseEstimate());
-        setPoseEstimate(distanceSensorLocalizer.getPoseEstimate());
-    }
-
-    public void ping() {
-        distanceSensorLocalizer.pingSensors();
-    }
     public TrajectoryBuilder trajectoryBuilder(Pose2d startPose) {
         return new TrajectoryBuilder(startPose, VEL_CONSTRAINT, ACCEL_CONSTRAINT);
     }
