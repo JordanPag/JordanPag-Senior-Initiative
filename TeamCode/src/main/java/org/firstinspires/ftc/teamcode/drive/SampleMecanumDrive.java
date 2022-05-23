@@ -140,6 +140,7 @@ public class SampleMecanumDrive extends MecanumDrive {
         sensorMap.put(backSensor, new Pose2d(-6.475, 3.325, Math.toRadians(180.0)));
         sensorMap.put(rightSensor, new Pose2d(4.15, 5.45, Math.toRadians(90.0)));
         distanceSensorLocalizer = new DistanceSensorLocalizer(this, sensorMap);*/
+
         setLocalizer(new StandardTrackingWheelLocalizer(hardwareMap));
 //
         trajectorySequenceRunner = new TrajectorySequenceRunner(follower, HEADING_PID);

@@ -140,8 +140,8 @@ public class MecanumChassis extends Chassis {
     // Adjustment for Field Centric Driving
     public double[] rotateVectors(double drive, double strafe) {
         double heading = driver.getPoseEstimate().getHeading();
-        double adjustedDrive = drive * Math.sin(heading) + strafe * Math.cos(heading);
-        double adjustedStrafe = strafe * Math.sin(heading) - drive * Math.cos(heading);
+        double adjustedDrive = drive * Math.sin(heading) - strafe * Math.cos(heading);
+        double adjustedStrafe = strafe * Math.sin(heading) + drive * Math.cos(heading);
         return new double[] {adjustedDrive, adjustedStrafe};
     }
 
@@ -299,7 +299,7 @@ public class MecanumChassis extends Chassis {
         }
         drive = drivePossibilities[minIndex];
 
-        return new double[] {drive, strafe, turn};
+        return new double[] {drive, strafe, turnWithCoeff / turnCoeff};
     }
 
     // Position functions

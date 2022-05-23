@@ -14,7 +14,7 @@ public class Constants {
 
     // Robot/Field Constants (inches):
     public static final double ROBOT_WIDTH = 17;
-    public static final double ROBOT_LENGTH = 17;
+    public static final double ROBOT_LENGTH = 14.6;
     public static final double FIELD_WIDTH = 144;
     public static final double FIELD_LENGTH = 72;
 }

@@ -7,8 +7,10 @@ import static org.firstinspires.ftc.teamcode.Constants.ROBOT_WIDTH;
 
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
+import com.qualcomm.robotcore.hardware.DcMotorEx;
 import com.qualcomm.robotcore.util.ElapsedTime;
 import org.firstinspires.ftc.teamcode.mechanism.chassis.MecanumChassis;
+import org.firstinspires.ftc.teamcode.util.Encoder;
 
 @TeleOp(name = "Mecanum OpMode", group = "Remote")
 public class MecanumTeleOp extends OpMode {
@@ -18,6 +20,7 @@ public class MecanumTeleOp extends OpMode {
     boolean bIsPressed = false;
     boolean fieldCentric = true;
     boolean wallAvoider = true;
+    private Encoder leftEncoder, rightEncoder, backEncoder;
 
     @Override
     public void init() {
@@ -29,6 +32,11 @@ public class MecanumTeleOp extends OpMode {
                 Math.PI / 2
         ); // Starting in the bottom right corner, facing upwards - the center of the field is (0, 0)
         // 0 heading is to the right along the x axis, angles increase counter-clockwise
+
+        // for testing:
+        leftEncoder = new Encoder(hardwareMap.get(DcMotorEx.class, "leftencoder"));
+        rightEncoder = new Encoder(hardwareMap.get(DcMotorEx.class, "rightencoder"));
+        backEncoder = new Encoder(hardwareMap.get(DcMotorEx.class, "backencoder"));
     }
 
     @Override
@@ -42,18 +50,18 @@ public class MecanumTeleOp extends OpMode {
         // Run each mechanism
 
         // Toggling Field Centric Driving Mode
-        if (gamepad2.a && !aIsPressed) {
+        if (gamepad1.a && !aIsPressed) {
             aIsPressed = true;
             fieldCentric = !fieldCentric;
-        } else if (!gamepad2.a && aIsPressed) {
+        } else if (!gamepad1.a && aIsPressed) {
             aIsPressed = false;
         }
 
         // Toggling Wall Avoider Driving Mode
-        if (gamepad2.b && !bIsPressed) {
+        if (gamepad1.b && !bIsPressed) {
             bIsPressed = true;
             wallAvoider = !wallAvoider;
-        } else if (!gamepad2.b && bIsPressed) {
+        } else if (!gamepad1.b && bIsPressed) {
             bIsPressed = false;
         }
 
@@ -65,5 +73,8 @@ public class MecanumTeleOp extends OpMode {
         telemetry.addData("x", pos[0]);
         telemetry.addData("y", pos[1]);
         telemetry.addData("heading", pos[2]);
+        telemetry.addData("Left encoder position", leftEncoder.getCurrentPosition()); // 800 ticks per revolution? REVERSE
+        telemetry.addData("Right encoder position", rightEncoder.getCurrentPosition()); // 800 ticks per revolution
+        telemetry.addData("Back encoder position", backEncoder.getCurrentPosition()); // 800 ticks per revolution
     }
 }
