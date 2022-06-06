@@ -18,6 +18,7 @@ import com.qualcomm.robotcore.hardware.Gamepad;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
+import org.firstinspires.ftc.robotcore.external.Telemetry;
 import org.firstinspires.ftc.robotcore.external.navigation.AngleUnit;
 import org.firstinspires.ftc.robotcore.external.navigation.AxesOrder;
 import org.firstinspires.ftc.robotcore.external.navigation.AxesReference;
@@ -80,11 +81,11 @@ public class MecanumChassis extends Chassis {
 
     @Override
     public void run(Gamepad gamepad){
-        run(gamepad,true,true);
+        run(gamepad,true,true, null);
     }
 
     @Override
-    public void run(Gamepad gamepad, boolean fieldCentric, boolean wallAvoider){
+    public void run(Gamepad gamepad, boolean fieldCentric, boolean wallAvoider, Telemetry telemetry){
         double drive = -gamepad.left_stick_y;
         double strafe = gamepad.left_stick_x;
         double turn = gamepad.right_stick_x;
@@ -96,7 +97,7 @@ public class MecanumChassis extends Chassis {
         }
 
         if(wallAvoider) {
-            double[] adjustment = adjustVectors(drive, strafe, turn);
+            double[] adjustment = adjustVectors(drive, strafe, turn, telemetry);
             drive = adjustment[0];
             strafe = adjustment[1];
             turn = adjustment[2];
@@ -140,13 +141,14 @@ public class MecanumChassis extends Chassis {
     // Adjustment for Field Centric Driving
     public double[] rotateVectors(double drive, double strafe) {
         double heading = driver.getPoseEstimate().getHeading();
-        double adjustedDrive = drive * Math.sin(heading) - strafe * Math.cos(heading);
-        double adjustedStrafe = strafe * Math.sin(heading) + drive * Math.cos(heading);
+        double headingDiff = heading - Math.PI / 2;
+        double adjustedDrive = drive * Math.cos(headingDiff) - strafe * Math.sin(headingDiff);
+        double adjustedStrafe = strafe * Math.cos(headingDiff) + drive * Math.sin(headingDiff);
         return new double[] {adjustedDrive, adjustedStrafe};
     }
 
     // Adjustment for Wall Avoider
-    public double[] adjustVectors(double drive, double strafe, double turn) {
+    public double[] adjustVectors(double drive, double strafe, double turn, Telemetry telemetry) {
         Pose2d pos = driver.getPoseEstimate();
         double x = pos.getX();
         double y = pos.getY();
@@ -180,11 +182,19 @@ public class MecanumChassis extends Chassis {
                 Math.sqrt(forwardMotion[2] * forwardMotion[2] + rightMotion[2] * rightMotion[2]),
                 Math.sqrt(forwardMotion[3] * forwardMotion[3] + rightMotion[3] * rightMotion[3])
         };
+
+        // Math.atan only gives a value between -pi/2 and pi/2, so we need 2 cases:
+        double[] angles = {
+                Math.atan(rightMotion[0] / Math.abs(forwardMotion[0])),
+                Math.atan(rightMotion[1] / Math.abs(forwardMotion[1])),
+                Math.atan(rightMotion[2] / Math.abs(forwardMotion[2])),
+                Math.atan(rightMotion[3] / Math.abs(forwardMotion[3]))
+        };
         double[] cornerHeadings = {
-                heading + Math.atan(forwardMotion[0] / rightMotion[0]),
-                heading + Math.atan(forwardMotion[1] / rightMotion[1]),
-                heading + Math.atan(forwardMotion[2] / rightMotion[2]),
-                heading + Math.atan(forwardMotion[3] / rightMotion[3])
+                forwardMotion[0] > 0 ? heading - angles[0] : heading + Math.PI + angles[0],
+                forwardMotion[1] > 0 ? heading - angles[1] : heading + Math.PI + angles[1],
+                forwardMotion[2] > 0 ? heading - angles[2] : heading + Math.PI + angles[2],
+                forwardMotion[3] > 0 ? heading - angles[3] : heading + Math.PI + angles[3]
         };
 
         double wallXVal = (x > 0) ? FIELD_WIDTH / 2 : -FIELD_WIDTH / 2; // The x position cap
@@ -195,58 +205,69 @@ public class MecanumChassis extends Chassis {
 
         // x and y distances from the walls to each corner of the robot (these can be negative):
         double[] cornerDistsX = {
-                wallXVal - (x + 0.5 * (ROBOT_LENGTH / headingCos - ROBOT_WIDTH / headingSin)),
-                wallXVal - (x + 0.5 * (ROBOT_LENGTH / headingCos + ROBOT_WIDTH / headingSin)),
-                wallXVal - (x + 0.5 * (-ROBOT_LENGTH / headingCos - ROBOT_WIDTH / headingSin)),
-                wallXVal - (x + 0.5 * (-ROBOT_LENGTH / headingCos + ROBOT_WIDTH / headingSin))
+                wallXVal - (x + 0.5 * (ROBOT_LENGTH * headingCos - ROBOT_WIDTH * headingSin)),
+                wallXVal - (x + 0.5 * (ROBOT_LENGTH * headingCos + ROBOT_WIDTH * headingSin)),
+                wallXVal - (x + 0.5 * (-ROBOT_LENGTH * headingCos - ROBOT_WIDTH * headingSin)),
+                wallXVal - (x + 0.5 * (-ROBOT_LENGTH * headingCos + ROBOT_WIDTH * headingSin))
         };
+        telemetry.addData("X corner distance 0", cornerDistsX[0]);
+        telemetry.addData("X corner distance 1", cornerDistsX[1]);
+        telemetry.addData("X corner distance 2", cornerDistsX[2]);
+        telemetry.addData("X corner distance 3", cornerDistsX[3]);
         double[] cornerDistsY = {
-                wallYVal - (y + 0.5 * (ROBOT_LENGTH / headingSin + ROBOT_WIDTH / headingCos)),
-                wallYVal - (y + 0.5 * (ROBOT_LENGTH / headingSin - ROBOT_WIDTH / headingCos)),
-                wallYVal - (y + 0.5 * (-ROBOT_LENGTH / headingSin + ROBOT_WIDTH / headingCos)),
-                wallYVal - (y + 0.5 * (-ROBOT_LENGTH / headingSin - ROBOT_WIDTH / headingCos))
+                wallYVal - (y + 0.5 * (ROBOT_LENGTH * headingSin + ROBOT_WIDTH * headingCos)),
+                wallYVal - (y + 0.5 * (ROBOT_LENGTH * headingSin - ROBOT_WIDTH * headingCos)),
+                wallYVal - (y + 0.5 * (-ROBOT_LENGTH * headingSin + ROBOT_WIDTH * headingCos)),
+                wallYVal - (y + 0.5 * (-ROBOT_LENGTH * headingSin - ROBOT_WIDTH * headingCos))
         };
+        telemetry.addData("Y corner distance 0", cornerDistsY[0]);
+        telemetry.addData("Y corner distance 1", cornerDistsY[1]);
+        telemetry.addData("Y corner distance 2", cornerDistsY[2]);
+        telemetry.addData("Y corner distance 3", cornerDistsY[3]);
 
-        // scaling for smooth slowdown to the wall, starting slowdown at 5 inches away
+        // scaling for smooth slowdown to the wall, starting slowdown at 30 inches away, but scaled by speed
+        double slowDist = 30.0;
+        int intensity = 5; // the higher the intensity, the more aggressively it slows you down
+        double minDist = 1; // the minimum allowed distance; the robot will be stopped past this
         double[] xScalars = {
-                Math.min(Math.abs(cornerDistsX[0] / 5), 1),
-                Math.min(Math.abs(cornerDistsX[1] / 5), 1),
-                Math.min(Math.abs(cornerDistsX[2] / 5), 1),
-                Math.min(Math.abs(cornerDistsX[3] / 5), 1)
+                Math.abs(cornerDistsX[0]) < minDist ? -0.5 : Math.min(Math.pow(Math.abs((cornerDistsX[0] - minDist) / (slowDist)), intensity), 1),
+                Math.abs(cornerDistsX[1]) < minDist ? -0.5 : Math.min(Math.pow(Math.abs((cornerDistsX[1] - minDist) / (slowDist)), intensity), 1),
+                Math.abs(cornerDistsX[2]) < minDist ? -0.5 : Math.min(Math.pow(Math.abs((cornerDistsX[2] - minDist) / (slowDist)), intensity), 1),
+                Math.abs(cornerDistsX[3]) < minDist ? -0.5 : Math.min(Math.pow(Math.abs((cornerDistsX[3] - minDist) / (slowDist)), intensity), 1)
         };
         double[] yScalars = {
-                Math.min(Math.abs(cornerDistsY[0] / 5), 1),
-                Math.min(Math.abs(cornerDistsY[1] / 5), 1),
-                Math.min(Math.abs(cornerDistsY[2] / 5), 1),
-                Math.min(Math.abs(cornerDistsY[3] / 5), 1)
+                Math.abs(cornerDistsY[0]) < minDist ? -0.5 : Math.min(Math.pow(Math.abs((cornerDistsY[0] - minDist) / (slowDist)), intensity), 1),
+                Math.abs(cornerDistsY[1]) < minDist ? -0.5 : Math.min(Math.pow(Math.abs((cornerDistsY[1] - minDist) / (slowDist)), intensity), 1),
+                Math.abs(cornerDistsY[2]) < minDist ? -0.5 : Math.min(Math.pow(Math.abs((cornerDistsY[2] - minDist) / (slowDist)), intensity), 1),
+                Math.abs(cornerDistsY[3]) < minDist ? -0.5 : Math.min(Math.pow(Math.abs((cornerDistsY[3] - minDist) / (slowDist)), intensity), 1)
         };
 
         // adjust motion according to the scalars
         double[] adjustedXVels = {
-                cornerMagnitudes[0] * Math.cos(cornerHeadings[0]) * xScalars[0],
-                cornerMagnitudes[1] * Math.cos(cornerHeadings[1]) * xScalars[1],
-                cornerMagnitudes[2] * Math.cos(cornerHeadings[2]) * xScalars[2],
-                cornerMagnitudes[3] * Math.cos(cornerHeadings[3]) * xScalars[3]
+                Math.cos(cornerHeadings[0]) * x > 0 ? cornerMagnitudes[0] * Math.cos(cornerHeadings[0]) * xScalars[0] : cornerMagnitudes[0] * Math.cos(cornerHeadings[0]),
+                Math.cos(cornerHeadings[1]) * x > 0 ? cornerMagnitudes[1] * Math.cos(cornerHeadings[1]) * xScalars[1] : cornerMagnitudes[1] * Math.cos(cornerHeadings[1]),
+                Math.cos(cornerHeadings[2]) * x > 0 ? cornerMagnitudes[2] * Math.cos(cornerHeadings[2]) * xScalars[2] : cornerMagnitudes[2] * Math.cos(cornerHeadings[2]),
+                Math.cos(cornerHeadings[3]) * x > 0 ? cornerMagnitudes[3] * Math.cos(cornerHeadings[3]) * xScalars[3] : cornerMagnitudes[3] * Math.cos(cornerHeadings[3]),
         };
         double[] adjustedYVels = {
-                cornerMagnitudes[0] * Math.sin(cornerHeadings[0]) * xScalars[0],
-                cornerMagnitudes[1] * Math.sin(cornerHeadings[1]) * xScalars[1],
-                cornerMagnitudes[2] * Math.sin(cornerHeadings[2]) * xScalars[2],
-                cornerMagnitudes[3] * Math.sin(cornerHeadings[3]) * xScalars[3]
+                Math.sin(cornerHeadings[0]) * y > 0 ? cornerMagnitudes[0] * Math.sin(cornerHeadings[0]) * yScalars[0] : cornerMagnitudes[0] * Math.sin(cornerHeadings[0]),
+                Math.sin(cornerHeadings[1]) * y > 0 ? cornerMagnitudes[1] * Math.sin(cornerHeadings[1]) * yScalars[1] : cornerMagnitudes[1] * Math.sin(cornerHeadings[1]),
+                Math.sin(cornerHeadings[2]) * y > 0 ? cornerMagnitudes[2] * Math.sin(cornerHeadings[2]) * yScalars[2] : cornerMagnitudes[2] * Math.sin(cornerHeadings[2]),
+                Math.sin(cornerHeadings[3]) * y > 0 ? cornerMagnitudes[3] * Math.sin(cornerHeadings[3]) * yScalars[3] : cornerMagnitudes[3] * Math.sin(cornerHeadings[3]),
         };
 
-        forwardMotion[0] = adjustedYVels[0] * headingSin + adjustedXVels[0] * headingCos;
-        rightMotion[0] = adjustedXVels[0] * headingSin - adjustedYVels[0] * headingCos;
-        forwardMotion[1] = adjustedYVels[1] * headingSin + adjustedXVels[1] * headingCos;
-        rightMotion[1] = adjustedXVels[1] * headingSin - adjustedYVels[1] * headingCos;
-        forwardMotion[2] = adjustedYVels[2] * headingSin + adjustedXVels[2] * headingCos;
-        rightMotion[2] = adjustedXVels[2] * headingSin - adjustedYVels[2] * headingCos;
-        forwardMotion[3] = adjustedYVels[3] * headingSin + adjustedXVels[3] * headingCos;
-        rightMotion[3] = adjustedXVels[3] * headingSin - adjustedYVels[3] * headingCos;
+        // rotate to get the robot-centric motion (the same as the rotateVectors method)
+        double headingDiff = heading - Math.PI / 2;
+        forwardMotion[0] = adjustedYVels[0] * Math.cos(headingDiff) - adjustedXVels[0] * Math.sin(headingDiff);
+        rightMotion[0] = adjustedXVels[0] * Math.cos(headingDiff) + adjustedYVels[0] * Math.sin(headingDiff);
+        forwardMotion[1] = adjustedYVels[1] * Math.cos(headingDiff) - adjustedXVels[1] * Math.sin(headingDiff);
+        rightMotion[1] = adjustedXVels[1] * Math.cos(headingDiff) + adjustedYVels[1] * Math.sin(headingDiff);
+        forwardMotion[2] = adjustedYVels[2] * Math.cos(headingDiff) - adjustedXVels[2] * Math.sin(headingDiff);
+        rightMotion[2] = adjustedXVels[2] * Math.cos(headingDiff) + adjustedYVels[2] * Math.sin(headingDiff);
+        forwardMotion[3] = adjustedYVels[3] * Math.cos(headingDiff) - adjustedXVels[3] * Math.sin(headingDiff);
+        rightMotion[3] = adjustedXVels[3] * Math.cos(headingDiff) + adjustedYVels[3] * Math.sin(headingDiff);
 
         // now adjust the actual drive, strafe, and turn values to the minimum allowed value
-        // sidenote: Math.min only lets you use two values at a time, which is why I'm using so many
-
         double[] turnPossibilities = {
                 0.5 * (forwardMotion[0] - forwardMotion[1]),
                 0.5 * (forwardMotion[0] - forwardMotion[3]),
@@ -297,7 +318,7 @@ public class MecanumChassis extends Chassis {
                 minIndex = i;
             }
         }
-        drive = drivePossibilities[minIndex];
+        strafe = strafePossibilities[minIndex];
 
         return new double[] {drive, strafe, turnWithCoeff / turnCoeff};
     }

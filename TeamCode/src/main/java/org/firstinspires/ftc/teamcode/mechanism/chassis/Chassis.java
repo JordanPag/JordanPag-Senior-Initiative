@@ -4,6 +4,7 @@ import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.Gamepad;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 
+import org.firstinspires.ftc.robotcore.external.Telemetry;
 import org.firstinspires.ftc.teamcode.mechanism.Mechanism;
 
 public abstract class Chassis implements Mechanism {
@@ -24,5 +25,5 @@ public abstract class Chassis implements Mechanism {
     public abstract void run(Gamepad gamepad);
 
     @Override
-    public abstract void run(Gamepad gamepad, boolean fieldCentric, boolean wallAvoider);
+    public abstract void run(Gamepad gamepad, boolean fieldCentric, boolean wallAvoider, Telemetry telemetry);
 }
